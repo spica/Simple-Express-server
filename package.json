@@ -1,0 +1,9 @@
+{
+  "name": "Simple-Express-server",
+  "description": "CSE WEC, SNU, Fall 2014 1st Warm-up Programming Assignment",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x"
+  }
+}
