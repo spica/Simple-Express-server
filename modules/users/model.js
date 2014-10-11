@@ -16,4 +16,4 @@ User.path('password').validate(function (value) {
 }, "Invalid password length");
 
 module.exports = mongoose.model('user', User);
-mongoose.connect( 'mongodb://localhost' );
+mongoose.connect( 'mongodb://heroku_app30612503:20ovajh1rfl34qesbajsac05rt@ds035260.mongolab.com:35260/heroku_app30612503' );
