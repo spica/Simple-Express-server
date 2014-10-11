@@ -1,7 +1,11 @@
 extends layout
 
 block content
-  .contents_container
+  .contents_container.container-fluid
+    h2.title Welcome! 
+    h5 Warm-up assignment #1
+    h5 created by Myunkyu Park
+    h5 2008-11606 
     .login_container
       p.message_area Please enter your credentials below
       .form-container
@@ -15,7 +19,6 @@ block content
         .btn-area
           button#login.btn.btn-primary Login
           button#signup.btn Add User
-          button#clearData.btn clearData
     .welcome_container.hide
       p Welcome! <span class="user_name"></span> 
       p You have logged in <span class="login_count"></span> times.
