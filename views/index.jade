@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .contents_container
+    .login_container
+      p.message_area Please enter your credentials below
+      .form-container
+        form#login_form(method="POST", action="/login")
+          .clearfix
+            label(for="username") Username :
+            input#username(name="username", type="text")
+          .clearfix
+            label(for="password") Password :
+            input#password(name="password", type="password")
+        .btn-area
+          button#login.btn.btn-primary Login
+          button#signup.btn Add User
+          button#clearData.btn clearData
+    .welcome_container.hide
+      p Welcome! <span class="user_name"></span> 
+      p You have logged in <span class="login_count"></span> times.
+      .btn-area
+        button#logout.btn.btn-primary Logout
+
+  script(type="text/javascript", src="/javascripts/login.js")
