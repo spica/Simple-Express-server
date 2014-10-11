@@ -36,23 +36,31 @@ router.post('/login', function(req, res) {
 
 router.post('/signup', function(req, res) {
   var post = req.body;
-  users.create(post, function(err, usr) {
-    // create session
-    res.writeHead(200, {'Content-Type': "application/json"});
-    if (err == null && usr != null) {
-      // set user login count + 1
-      res.write(JSON.stringify({"user_name" : usr.username, "login_count" : usr.loginCnt}));
-    } else if (err != null) {
-      //res.write(JSON.stringify({"success": false}));
-      if (err.code && err.code == 11000) {
-        res.write(JSON.stringify({"error_code" : -3}));
-      } else if (err.errors.username && err.errors.username.message == "Invalid username length")
-        res.write(JSON.stringify({"error_code" : -1}));
-      else if (err.errors.password && err.errors.password.message == "Invalid password length")
-        res.write(JSON.stringify({"error_code" : -2}));
-    }
+  if (post.username == undefined || post.username == "") {
+    res.write(JSON.stringify({"error_code" : -1}));
     res.send();
-  });
+  } else if (post.password == undefined || post.password == "") {
+    res.write(JSON.stringify({"error_code" : -2}));
+    res.send();
+  } else {
+    users.create(post, function(err, usr) {
+      // create session
+      res.writeHead(200, {'Content-Type': "application/json"});
+      if (err == null && usr != null) {
+        // set user login count + 1
+        res.write(JSON.stringify({"user_name" : usr.username, "login_count" : usr.loginCnt}));
+      } else if (err != null) {
+        //res.write(JSON.stringify({"success": false}));
+        if (err.code && err.code == 11000) {
+          res.write(JSON.stringify({"error_code" : -3}));
+        } else if (err.errors.username && err.errors.username.message == "Invalid username length")
+          res.write(JSON.stringify({"error_code" : -1}));
+        else if (err.errors.password && err.errors.password.message == "Invalid password length")
+          res.write(JSON.stringify({"error_code" : -2}));
+      }
+      res.send();
+    });
+  }
 });
 
 module.exports = router;
